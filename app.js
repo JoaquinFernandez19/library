@@ -66,20 +66,28 @@ function render() {
 
 let readStatus = (e) => {
 	let current = e.target;
-
+	console.log(current.dataset.book);
 	// First change the style of the read btn
-	current.classList.toggle('read-NO');
-	current.classList.toggle('read-YES');
+	if (current.hasAttribute('data-book')) {
+		current.classList.toggle('read-NO');
+		current.classList.toggle('read-YES');
+
+		// Then change the value of read
+		library.forEach((book) => {
+			let currentBookObj = book;
+			if (currentBookObj.number === current.dataset.book && currentBookObj.read) {
+				console.log('works!');
+				currentBookObj.read = false;
+			} else if (currentBookObj.number === current.dataset.book && !currentBookObj.read) {
+				currentBookObj.read = true;
+			}
+		});
+
+		//Update the html
+		render();
+	}
+
 	//Now change the property in the object
-	library.forEach((book) => {
-		let currentBookObj = book;
-		if (currentBookObj.read) {
-			currentBookObj.read = false;
-		} else {
-			currentBookObj.read = true;
-		}
-	});
-	render();
 };
 
 //html elements
