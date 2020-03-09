@@ -18,7 +18,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 90vw;
+	padding: 0 2em 0 2em;
 	height: 80vh;
 	border: 3px dashed black;
 	font-size: 1.5rem;
@@ -37,6 +37,8 @@ body {
 	& span {
 		cursor: pointer;
 		border: 1px solid black;
+		border-radius: 5px;
+		box-shadow: 4px 4px rgb(3, 75, 17);
 	}
 }
 .newBook {
@@ -54,8 +56,16 @@ body {
 
 .read-YES {
 	background-color: rgb(10, 255, 10);
+	&:hover {
+		box-shadow: 4px 4px rgb(25, 26, 25);
+		background-color: rgb(123, 202, 139);
+	}
 }
 
 .read-NO {
 	background-color: red;
+	&:hover {
+		box-shadow: 4px 4px rgb(25, 26, 25);
+		background-color: rgb(202, 123, 123);
+	}
 }
