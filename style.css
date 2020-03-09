@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Oswald;
+}
+
+body {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+
+#library-html {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 90vw;
+  height: 80vh;
+  border: 3px dashed black;
+  font-size: 1.5rem;
+  color: #0a0a0a;
+  text-align: center;
+}
+
+#library-html p {
+  background-color: rgba(0, 0, 0, 0.096);
+  margin-bottom: 1em;
+  border-radius: 10px;
+  letter-spacing: 0.1em;
+  position: relative;
+}
+
+#library-html p:first-child {
+  margin-top: 1em;
+}
+
+#library-html span {
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.newBook {
+  width: 8vw;
+  height: 3vh;
+  background-color: #220f0f;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.newBook:hover {
+  background-color: rgba(255, 1, 1, 0.506);
+}
+
+.read-YES {
+  background-color: #0aff0a;
+}
+
+.read-NO {
+  background-color: red;
+}
+/*# sourceMappingURL=style.css.map */
