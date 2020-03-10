@@ -11,39 +11,54 @@ body {
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
-	height: 100vh;
 }
 
 #library-html {
+	margin-top: 5vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 0 2em 0 2em;
-	height: 80vh;
-	border: 3px dashed black;
+	min-height: 80vh;
+	min-width: 30vw;
+	border: 4px dashed black;
 	font-size: 1.5rem;
 	color: rgb(10, 10, 10);
 	text-align: center;
 	& p {
 		background-color: rgba(0, 0, 0, 0.096);
 		margin-bottom: 1em;
-		border-radius: 10px;
-		letter-spacing: 0.1em;
+		margin-left: 2em;
+		margin-right: 2em;
 		position: relative;
 	}
 	& p:first-child {
 		margin-top: 1em;
 	}
-	& span {
+	& span:last-child {
 		cursor: pointer;
 		border: 1px solid black;
 		border-radius: 5px;
-		box-shadow: 4px 4px rgb(3, 75, 17);
+		box-shadow: 0px 4px rgb(3, 75, 17);
+	}
+	& span:first-child {
+		cursor: pointer;
+		color: rgba(37, 34, 34, 0.397);
+		position: absolute;
+		left: -1.5em;
+		&:hover {
+			color: rgb(114, 7, 7);
+		}
+		& i {
+			font-size: 1.2em;
+		}
 	}
 }
 .newBook {
-	width: 8vw;
+	width: 5rem;
+	min-height: 4vh;
 	height: 3vh;
+	margin-top: 5vh;
 	background-color: rgb(34, 15, 15);
 	color: rgb(255, 255, 255);
 	outline: none;
@@ -57,7 +72,7 @@ body {
 .read-YES {
 	background-color: rgb(10, 255, 10);
 	&:hover {
-		box-shadow: 4px 4px rgb(25, 26, 25);
+		box-shadow: 0px 4px rgb(25, 26, 25);
 		background-color: rgb(123, 202, 139);
 	}
 }
@@ -65,7 +80,85 @@ body {
 .read-NO {
 	background-color: red;
 	&:hover {
-		box-shadow: 4px 4px rgb(25, 26, 25);
+		box-shadow: 0px 4px rgb(25, 26, 25);
 		background-color: rgb(202, 123, 123);
+	}
+}
+
+.form {
+	position: fixed;
+	z-index: 3;
+	top: 13%;
+	min-height: 20vh;
+	display: none;
+	justify-content: space-evenly;
+	flex-direction: column;
+	align-items: center;
+	transform: scale(1.5, 1.5);
+	font-size: 1.5rem;
+	text-align: center;
+	background-color: rgb(20, 17, 17);
+	color: rgb(255, 255, 255);
+	padding: 1em;
+	box-shadow: 4px 4px 10px rgb(121, 117, 117);
+	& input {
+		width: 200px;
+		text-align: center;
+		margin: 1em;
+		padding: 0.5em;
+		outline: none;
+		border: none;
+	}
+	& input[type='checkbox'] {
+		width: 20px;
+		margin-bottom: 1em;
+	}
+	& label {
+		font-size: 1rem;
+		margin-top: 1em;
+	}
+	& .submitBtn {
+		cursor: pointer;
+		margin: 0;
+		&:hover {
+			background-color: rgba(255, 1, 1, 0.506);
+			color: white;
+		}
+	}
+}
+
+.close {
+	width: 2em;
+	border: none;
+	cursor: pointer;
+	font-size: 0.56em;
+	background-color: rgb(20, 17, 17);
+	color: white;
+	position: absolute;
+	top: 10px;
+	right: 5px;
+	&:hover {
+		color: rgb(248, 51, 51);
+		outline: none;
+	}
+}
+
+@media (max-width: 400px) {
+	#library-html {
+		margin: 1%;
+		margin-top: 5vh;
+		border: 3px dotted black;
+		padding: 0 1em 0 1em;
+		p {
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+	}
+	.newBook {
+		height: 5vh;
+		width: 5rem;
+	}
+	.form {
+		transform: scale(1, 1);
 	}
 }

@@ -22,10 +22,10 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
 }
 
 #library-html {
+  margin-top: 5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -37,8 +37,9 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 2em 0 2em;
-  height: 80vh;
-  border: 3px dashed black;
+  min-height: 80vh;
+  min-width: 30vw;
+  border: 4px dashed black;
   font-size: 1.5rem;
   color: #0a0a0a;
   text-align: center;
@@ -47,8 +48,8 @@ body {
 #library-html p {
   background-color: rgba(0, 0, 0, 0.096);
   margin-bottom: 1em;
-  border-radius: 10px;
-  letter-spacing: 0.1em;
+  margin-left: 2em;
+  margin-right: 2em;
   position: relative;
 }
 
@@ -56,17 +57,34 @@ body {
   margin-top: 1em;
 }
 
-#library-html span {
+#library-html span:last-child {
   cursor: pointer;
   border: 1px solid black;
   border-radius: 5px;
-  -webkit-box-shadow: 4px 4px #034b11;
-          box-shadow: 4px 4px #034b11;
+  -webkit-box-shadow: 0px 4px #034b11;
+          box-shadow: 0px 4px #034b11;
+}
+
+#library-html span:first-child {
+  cursor: pointer;
+  color: rgba(37, 34, 34, 0.397);
+  position: absolute;
+  left: -1.5em;
+}
+
+#library-html span:first-child:hover {
+  color: #720707;
+}
+
+#library-html span:first-child i {
+  font-size: 1.2em;
 }
 
 .newBook {
-  width: 8vw;
+  width: 5rem;
+  min-height: 4vh;
   height: 3vh;
+  margin-top: 5vh;
   background-color: #220f0f;
   color: white;
   outline: none;
@@ -83,8 +101,8 @@ body {
 }
 
 .read-YES:hover {
-  -webkit-box-shadow: 4px 4px #191a19;
-          box-shadow: 4px 4px #191a19;
+  -webkit-box-shadow: 0px 4px #191a19;
+          box-shadow: 0px 4px #191a19;
   background-color: #7bca8b;
 }
 
@@ -93,8 +111,102 @@ body {
 }
 
 .read-NO:hover {
-  -webkit-box-shadow: 4px 4px #191a19;
-          box-shadow: 4px 4px #191a19;
+  -webkit-box-shadow: 0px 4px #191a19;
+          box-shadow: 0px 4px #191a19;
   background-color: #ca7b7b;
+}
+
+.form {
+  position: fixed;
+  z-index: 3;
+  top: 13%;
+  min-height: 20vh;
+  display: none;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: scale(1.5, 1.5);
+          transform: scale(1.5, 1.5);
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: #141111;
+  color: white;
+  padding: 1em;
+  -webkit-box-shadow: 4px 4px 10px #797575;
+          box-shadow: 4px 4px 10px #797575;
+}
+
+.form input {
+  width: 200px;
+  text-align: center;
+  margin: 1em;
+  padding: 0.5em;
+  outline: none;
+  border: none;
+}
+
+.form input[type='checkbox'] {
+  width: 20px;
+  margin-bottom: 1em;
+}
+
+.form label {
+  font-size: 1rem;
+  margin-top: 1em;
+}
+
+.form .submitBtn {
+  cursor: pointer;
+  margin: 0;
+}
+
+.form .submitBtn:hover {
+  background-color: rgba(255, 1, 1, 0.506);
+  color: white;
+}
+
+.close {
+  width: 2em;
+  border: none;
+  cursor: pointer;
+  font-size: 0.56em;
+  background-color: #141111;
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+
+.close:hover {
+  color: #f83333;
+  outline: none;
+}
+
+@media (max-width: 400px) {
+  #library-html {
+    margin: 1%;
+    margin-top: 5vh;
+    border: 3px dotted black;
+    padding: 0 1em 0 1em;
+  }
+  #library-html p {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .newBook {
+    height: 5vh;
+    width: 5rem;
+  }
+  .form {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
 }
 /*# sourceMappingURL=style.css.map */

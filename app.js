@@ -1,8 +1,7 @@
 //Hello
-function Book(title, author, pages, read, number) {
+function Book(title, author, read, number) {
 	this.title = title;
 	this.author = author;
-	this.pages = pages;
 	this.read = read;
 	this.number = number;
 }
@@ -11,19 +10,16 @@ let library = [];
 
 function createNewBook() {
 	let book = new Book();
-	book.title = prompt('Please enter the title of the book');
-	book.author = prompt('Who writed it?');
-	book.pages = prompt(
-		"What is the number of pages of this book? (put 0 if you don't remember)"
-	);
-	book.read = confirm('Have you read it?');
-	if (book.title && book.pages && book.author) {
+	book.title = formTitle.value;
+	book.author = formAuthor.value;
+	book.read = formRead.checked;
+	if (book.title && book.author) {
 		library.push(book);
-		render();
 	}
 }
-
+//Render every book on the screen
 function render() {
+	//function creadora de los elementos html y nodes
 	//Limpio el html para que no se stacken los viejos
 	libraryHTML.innerHTML = '';
 	// Counter para los data-book
@@ -32,43 +28,53 @@ function render() {
 		//Creo los elementos del libro
 		let paragraph = document.createElement('p');
 		let span = document.createElement('span');
+		let spanDelete = document.createElement('span');
+		let iconDelete = document.createElement('i');
 
-		//let iconDelete = document.createElement('i');
-		//<i class="fas fa-trash-alt"></i>
+		//Agrego classes a los elementos
+		iconDelete.classList.add('fas', 'fa-ban');
+		spanDelete.appendChild(iconDelete);
+		spanDelete.classList.add('delete');
 
 		//Creo un elemento que define si está leído o no
-		let readItNode = document.createTextNode(`${book.read ? 'READED' : 'UNREADED'}`);
-		//Texto dentro del elemento creado
-		let bookNode = document.createTextNode(
-			`"${book.title}" writed by "${book.author}", ${
-				book.pages === '0' ? 'uknown' : book.pages
-			} pages `
-		);
+		let readItNode = document.createTextNode(`${book.read ? 'FINISHED' : 'UNFINISHED'}`);
+
+		//Texto dentro del Paragraph
+		let bookNode = document.createTextNode(`"${book.title}" writed by "${book.author}" `);
 		//Insertamos el contenido del boton de leído o no leído
 		span.appendChild(readItNode);
-		if (span.textContent === 'UNREADED') {
+		if (span.textContent === 'UNFINISHED') {
 			span.classList.add('read-NO');
 		}
-		if (span.textContent === 'READED') {
+		if (span.textContent === 'FINISHED') {
 			span.classList.add('read-YES');
 		}
-		//Insertamos el data-book en el html
+		//Insertamos el data-book en los spans
+		spanDelete.dataset.book = counter;
 		span.dataset.book = counter;
+
+		//Aumentamos el counter para el siguiente libro
 		counter++;
-		//Insertamos el data-book en el objeto
+
+		//Insertamos el data-book numero en el objeto
 		book.number = span.dataset.book;
+		book.number = spanDelete.dataset.book;
+
 		//Insertamos todo en el html
+		paragraph.appendChild(spanDelete);
 		paragraph.appendChild(bookNode);
 		paragraph.appendChild(span);
 		libraryHTML.appendChild(paragraph);
 	});
 }
-
+//function to change the read status of a book
 let readStatus = (e) => {
 	let current = e.target;
-	console.log(current.dataset.book);
 	// First change the style of the read btn
-	if (current.hasAttribute('data-book')) {
+	if (
+		current.hasAttribute('data-book') &&
+		(current.classList.contains('read-NO') || current.classList.contains('read-YES'))
+	) {
 		current.classList.toggle('read-NO');
 		current.classList.toggle('read-YES');
 
@@ -76,7 +82,6 @@ let readStatus = (e) => {
 		library.forEach((book) => {
 			let currentBookObj = book;
 			if (currentBookObj.number === current.dataset.book && currentBookObj.read) {
-				console.log('works!');
 				currentBookObj.read = false;
 			} else if (currentBookObj.number === current.dataset.book && !currentBookObj.read) {
 				currentBookObj.read = true;
@@ -86,18 +91,60 @@ let readStatus = (e) => {
 		//Update the html
 		render();
 	}
+};
 
-	//Now change the property in the object
+let deleteBook = (e) => {
+	let current = e.target.parentElement;
+	if (current.classList.contains('delete') && current.hasAttribute('data-book')) {
+		library.forEach((book) => {
+			let currentBookObj = book;
+			if (currentBookObj.number === current.dataset.book) {
+				let indexToDelete = library.indexOf(currentBookObj);
+				library.splice(indexToDelete, 1);
+
+				render();
+			}
+		});
+	}
 };
 
 //html elements
-
 let libraryHTML = document.querySelector('#library-html');
 let addBookBtn = document.querySelector('.newBook');
 let readStatusBtn = document.querySelector('span');
 
+//Form html elements
+let form = document.querySelector('.form');
+let submitBtn = document.querySelector('.submitBtn');
+let formTitle = document.getElementById('title');
+let formAuthor = document.getElementById('author');
+let formRead = document.querySelector('#read');
+let closeForm = document.querySelector('.close');
+
 //Eventlisteners
 
-addBookBtn.addEventListener('click', createNewBook);
+submitBtn.addEventListener('click', (e) => {
+	if (formTitle.value !== '' && formAuthor.value !== '') {
+		form.style.display = 'none';
+		createNewBook();
+		render();
+	}
 
+	formTitle.value = '';
+	formAuthor.value = '';
+});
+
+closeForm.addEventListener('click', () => {
+	form.style.display = 'none';
+	formTitle.value = '';
+	formAuthor.value = '';
+
+	formRead.value = '';
+});
+
+addBookBtn.addEventListener('click', () => {
+	form.style.display = 'flex';
+});
+
+window.addEventListener('click', deleteBook);
 window.addEventListener('click', readStatus);
