@@ -189,12 +189,13 @@ body {
   outline: none;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   #library-html {
     margin: 1%;
     margin-top: 5vh;
     border: 3px dotted black;
     padding: 0 1em 0 1em;
+    min-width: 90vw;
   }
   #library-html p {
     margin-left: 0px;
