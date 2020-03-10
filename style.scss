@@ -13,45 +13,31 @@ body {
 	align-items: center;
 }
 
+#library-html::-webkit-scrollbar {
+	width: 0.3em;
+}
+
+#library-html::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
+	outline: 1px solid slategrey;
+	height: 1em;
+}
 #library-html {
+	overflow-y: scroll;
 	margin-top: 5vh;
 	display: flex;
+	text-align: center;
 	flex-direction: column;
 	align-items: center;
-	padding: 0 2em 0 2em;
+	padding: 0 1em 0 1em;
 	min-height: 80vh;
+	max-height: 80vh;
 	min-width: 30vw;
 	border: 4px dashed black;
 	font-size: 1.5rem;
 	color: rgb(10, 10, 10);
-	text-align: center;
-	& p {
-		background-color: rgba(0, 0, 0, 0.096);
-		margin-bottom: 1em;
-		margin-left: 2em;
-		margin-right: 2em;
-		position: relative;
-	}
 	& p:first-child {
 		margin-top: 1em;
-	}
-	& span:last-child {
-		cursor: pointer;
-		border: 1px solid black;
-		border-radius: 5px;
-		box-shadow: 0px 4px rgb(3, 75, 17);
-	}
-	& span:first-child {
-		cursor: pointer;
-		color: rgba(37, 34, 34, 0.397);
-		position: absolute;
-		left: -1.5em;
-		&:hover {
-			color: rgb(114, 7, 7);
-		}
-		& i {
-			font-size: 1.2em;
-		}
 	}
 }
 .newBook {
@@ -66,22 +52,6 @@ body {
 	cursor: pointer;
 	&:hover {
 		background-color: rgba(255, 1, 1, 0.506);
-	}
-}
-
-.read-YES {
-	background-color: rgb(10, 255, 10);
-	&:hover {
-		box-shadow: 0px 4px rgb(25, 26, 25);
-		background-color: rgb(123, 202, 139);
-	}
-}
-
-.read-NO {
-	background-color: red;
-	&:hover {
-		box-shadow: 0px 4px rgb(25, 26, 25);
-		background-color: rgb(202, 123, 123);
 	}
 }
 
@@ -142,18 +112,73 @@ body {
 		outline: none;
 	}
 }
+.bookDiv {
+	display: flex;
+	border-bottom: 3px solid black;
+	justify-content: space-between;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	width: 100%;
+	flex-wrap: wrap;
+	flex-shrink: 0.6;
+	margin-bottom: 1em;
+	& span:first-child {
+		//icono de borrar
+		cursor: pointer;
+		margin: auto;
+		color: rgba(37, 34, 34, 0.397);
+		padding-right: 0.5em;
+		padding-left: 0.5em;
+
+		&:hover {
+			color: rgb(114, 7, 7);
+		}
+		& i {
+			font-size: 1em;
+		}
+	}
+	& span:last-child {
+		//cambiar de read
+		cursor: pointer;
+		border: 1px solid black;
+		border-radius: 5px;
+		padding: 0.1em;
+		margin: auto;
+	}
+	& p {
+		margin: auto;
+		background-color: rgba(128, 128, 128, 0.308);
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+		flex-grow: 2;
+	}
+}
+.read-YES {
+	background-color: rgb(10, 255, 10);
+	box-shadow: 0px 4px rgb(3, 75, 17);
+
+	&:hover {
+		box-shadow: 0px 4px rgb(25, 26, 25);
+		background-color: rgb(123, 202, 139);
+	}
+}
+
+.read-NO {
+	background-color: red;
+	box-shadow: 0px 4px rgb(75, 3, 3);
+
+	&:hover {
+		box-shadow: 0px 4px rgb(25, 26, 25);
+		background-color: rgb(202, 123, 123);
+	}
+}
 
 @media (max-width: 600px) {
 	#library-html {
-		margin: 1%;
 		margin-top: 5vh;
-		border: 3px dotted black;
-		padding: 0 1em 0 1em;
-		min-width: 90vw;
-		p {
-			margin-left: 0px;
-			margin-right: 0px;
-		}
+		border: 4px dashed black;
+		padding: 0 0.5em 0 0.5em;
+		min-width: 80vw;
 	}
 	.newBook {
 		height: 5vh;
@@ -161,5 +186,23 @@ body {
 	}
 	.form {
 		transform: scale(1, 1);
+	}
+	.bookDiv {
+		& span:first-child {
+			//icono de borrar
+			& i {
+				font-size: 1em;
+			}
+		}
+	}
+}
+@media (max-width: 500px) {
+	.bookDiv {
+		flex-direction: column;
+		& span:last-child {
+			padding: 0;
+			font-size: 0.8em;
+			margin-top: 0.3em;
+		}
 	}
 }

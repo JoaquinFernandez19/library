@@ -26,24 +26,26 @@ function render() {
 	let counter = 0;
 	library.forEach((book) => {
 		//Creo los elementos del libro
-		let paragraph = document.createElement('p');
+		let div = document.createElement('div');
 		let span = document.createElement('span');
 		let spanDelete = document.createElement('span');
+		let paragraph = document.createElement('p');
 		let iconDelete = document.createElement('i');
 
 		//Agrego classes a los elementos
-		iconDelete.classList.add('fas', 'fa-ban');
+		iconDelete.classList.add('far', 'fa-trash-alt');
 		spanDelete.appendChild(iconDelete);
 		spanDelete.classList.add('delete');
-
+		div.classList.add('bookDiv');
 		//Creo un elemento que define si está leído o no
 		let readItNode = document.createTextNode(`${book.read ? 'FINISHED' : 'UNFINISHED'}`);
 
 		//Texto dentro del Paragraph
-		let bookNode = document.createTextNode(`"${book.title}" writed by "${book.author}" `);
+		let bookNode = document.createTextNode(`"${book.title}" writed by ${book.author} `);
 		//Insertamos el contenido del boton de leído o no leído
 		span.appendChild(readItNode);
 		if (span.textContent === 'UNFINISHED') {
+			console.log('nani');
 			span.classList.add('read-NO');
 		}
 		if (span.textContent === 'FINISHED') {
@@ -61,10 +63,11 @@ function render() {
 		book.number = spanDelete.dataset.book;
 
 		//Insertamos todo en el html
-		paragraph.appendChild(spanDelete);
+		div.appendChild(spanDelete);
 		paragraph.appendChild(bookNode);
-		paragraph.appendChild(span);
-		libraryHTML.appendChild(paragraph);
+		div.appendChild(paragraph);
+		div.appendChild(span);
+		libraryHTML.appendChild(div);
 	});
 }
 //function to change the read status of a book
