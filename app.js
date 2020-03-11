@@ -45,7 +45,6 @@ function render() {
 		//Insertamos el contenido del boton de leído o no leído
 		span.appendChild(readItNode);
 		if (span.textContent === 'UNFINISHED') {
-			console.log('nani');
 			span.classList.add('read-NO');
 		}
 		if (span.textContent === 'FINISHED') {
@@ -132,7 +131,6 @@ submitBtn.addEventListener('click', (e) => {
 		createNewBook();
 		render();
 	}
-
 	formTitle.value = '';
 	formAuthor.value = '';
 });
@@ -151,3 +149,5 @@ addBookBtn.addEventListener('click', () => {
 
 window.addEventListener('click', deleteBook);
 window.addEventListener('click', readStatus);
+
+//LocalStorage
